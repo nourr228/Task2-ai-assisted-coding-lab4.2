@@ -8,6 +8,11 @@ import {
 
 const router = Router();
 
-// TODO: wire up the three routes in README.md section 2 and the summary route in section 3.
+// /summary MUST be registered before /:id so Express doesn't treat
+// the literal string "summary" as a MongoDB ObjectId parameter.
+router.get('/summary', getEvaluationSummary);
+router.get('/',        getAllEvaluations);
+router.post('/',       createEvaluation);
+router.get('/:id',     getEvaluation);
 
 export default router;
